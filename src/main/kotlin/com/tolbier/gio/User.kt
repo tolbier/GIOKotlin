@@ -20,3 +20,6 @@ fun usersFromJSONFile(filename: String): List<User> {
     val gson = Gson()
     return gson.fromJson<List<User>>(FileReader(filename), object : TypeToken<List<User>>(){ }.type)
 }
+fun findEmails(users: List<User>, predicate: (String) -> (Boolean)):List<User>{
+    return users.filter{it-> predicate(it.email)}
+}

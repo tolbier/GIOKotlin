@@ -1,7 +1,7 @@
 package com.tolbier.gio
 
-//class  UserResult
-//open class  UserResult
+// class  UserResult{
+// open class  UserResult {
 sealed class  UserResult{
     data class Success(val users: List<User>): UserResult()
     data class Failure(val message: String): UserResult()
@@ -9,5 +9,10 @@ sealed class  UserResult{
 
 
 fun retrieveUsers():UserResult{
-    return UserResult.Success(usersFromJSONFile("users.json"))
+    return try {
+        UserResult.Success(usersFromJSONFile("users2.json"))
+    }catch (e: Exception){
+        UserResult.Failure(e.message?:"")
+    }
+
 }

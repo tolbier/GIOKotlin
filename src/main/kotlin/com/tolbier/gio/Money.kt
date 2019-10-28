@@ -1,5 +1,6 @@
 package com.tolbier.gio
 
+import java.lang.IllegalArgumentException
 import java.math.BigDecimal
 
 //data class Money(val amount:Int, val currency: String)
@@ -9,7 +10,7 @@ data class Money(val amount:BigDecimal, val currency: String){
 
 operator fun Money.plus(other: Money) =
     if (this.currency == other.currency){
-        this.copy(other.amount)
+        this.copy(this.amount + other.amount)
     }else{
-        this
+        throw IllegalArgumentException("We're gonna have a problem here!")
     }
